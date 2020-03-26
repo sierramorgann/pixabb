@@ -1,0 +1,32 @@
+{
+  "name": "pix-8bit",
+  "version": "0.0.1",
+  "description": "A barebones Node.js app",
+  "engines": {
+    "node": "12.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "busy-hours": "0.0.5",
+    "cors": "^2.8.5",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "fetch": "^1.1.0",
+    "google-busy-hours": "^1.0.1"
+  },
+  "devDependencies": {
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sierramorgann/pixabb.git"
+  },
+  "keywords": [
+    "shop"
+  ],
+  "license": "MIT"
+}
