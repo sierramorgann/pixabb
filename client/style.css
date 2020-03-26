@@ -1,0 +1,21 @@
+#can {
+    float:left;
+    border:2px solid #888;
+    border-radius:4px;
+    position:relative; /* Necessary for correct mouse co-ords in Firefox */
+}
+
+.colors {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+}
+
+.left {
+	width: 50%;
+	float: left;
+}
+
+.camera {
+
+}

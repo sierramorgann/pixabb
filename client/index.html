@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>{{ title }}</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- <script src="{{ url_for('static', filename='script/script.js') }}"></script> -->
+    <script src="script.js"></script>
+</head>
+
+<body onload="init()">
+    <canvas width="600px" height="450px" id="can"></canvas>
+
+    <div class="left">
+        <div class="colors" style="top:15%;left:45%;background:green;" id="green" onclick="color(this)"></div>
+        <div class="colors" style="top:15%;left:46%;background:blue;" id="blue" onclick="color(this)"></div>
+        <div class="colors" style="top:15%;left:47%;background:red;" id="red" onclick="color(this)"></div>
+        <div class="colors" style="top:17%;left:45%;background:yellow;" id="yellow" onclick="color(this)"></div>
+        <div class="colors" style="top:17%;left:46%;background:orange;" id="orange" onclick="color(this)"></div>
+        <div class="colors" style="top:17%;left:47%;background:black;" id="black" onclick="color(this)"></div>
+
+    <div style="top:20%;left:43%;">Eraser</div>
+
+    <div style="top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+
+
+    <br><input id="name" type="" name="" value="Your Name" onfocus="this.value=''"><br>
+    <button id="submit">Submit</button>
+    <div id="download"></div>
+    
+    <button id="clearbutton" onclick="clearCanvas(canvas,ctx);">Clear</button>
+    </div>
+
+    <div class="camera">
+        <video id="video">Video stream not available.</video><br>
+        <button id="startbutton">Take photo</button>
+    </div>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var button = $('#submit');
+        $("#submit").click(function() {
+            toImg();
+        });
+    });
+    </script>
+</body>
+
+</html>
