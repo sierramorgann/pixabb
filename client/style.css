@@ -33,10 +33,6 @@ body {
 	margin-top:	15%; 
 }
 
-#start {
-	display: grid;
-}
-
 #empty {
 	float: right;
 	padding-right: 7%;
@@ -45,6 +41,10 @@ body {
 
 #result {
 	padding-top: 5%;
+}
+
+#drop {
+	float: right;
 }
 
 video {

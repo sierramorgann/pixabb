@@ -15,6 +15,23 @@ function init() {
     w = canvas.width;
     h = canvas.height;
 
+    window.ondragover = function(e) {e.preventDefault()}
+    window.ondrop = function(e) {e.preventDefault(); draw(e.dataTransfer.files[0]); }
+        
+    function draw(file){
+        
+        var img =new Image();
+        // URL @ Mozilla, webkitURL @ Chrome
+        img.src = (window.webkitURL ? webkitURL : URL).createObjectURL(file);
+
+        // call ctx.drawImage when the image got loaded
+        img.onload = function() {
+          // ctx.drawImage(img, 0, 0);
+          ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height); // stretch img to canvas size
+      }
+
+    }
+
     canvas.addEventListener("mousemove", function(e) {
         findxy('move', e)
     }, false);
