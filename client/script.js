@@ -9,8 +9,7 @@ var x = "black",
     y = 2;
 
 function init() {
-    
-    
+  
     canvas = document.getElementById('can');
     ctx = canvas.getContext("2d");
     w = canvas.width;
@@ -38,15 +37,15 @@ function clearCanvas(canvas, ctx) {
 }
 
 function download() {
+   document.getElementById("link").innerHTML = "";
 
-   var link = document.createElement('a');
+   var link = document.getElementById('link');
         link.innerHTML = 'download image';
         link.href = "#";
         link.download = "littleBits.png";
+        link.className = "link";
 
-    var sty = document.getElementById("link");
-    console.log(sty);
-    document.sty.appendChild(link, canvas);
+    document.link.appendChild(link, canvas);
 }
 
 function color(obj) {

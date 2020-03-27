@@ -15,7 +15,7 @@ body {
 	height: 10px;
 }
 
-.left {
+#left {
 	width: 25%;
 	text-align: right;
 	padding-right: 2%;
@@ -33,6 +33,10 @@ body {
 	margin-top:	15%; 
 }
 
+#start {
+	display: grid;
+}
+
 #empty {
 	float: right;
 	padding-right: 7%;
@@ -45,4 +49,8 @@ body {
 
 video {
 	margin-top: 5%;
+}
+
+#link {
+	margin: 25%;
 }

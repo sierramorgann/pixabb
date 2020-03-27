@@ -11,7 +11,7 @@
 <body onload="init()">
     <table>
         <tr>
-            <td class="left">
+            <td id="left">
                 <h1>Pixa 8 Bit</h1>
                 <div class="colors" style="top:15%;left:45%;background:green;" id="green" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:46%;background:blue;" id="blue" onclick="color(this)"></div>
@@ -22,7 +22,7 @@
                 <div style="top:20%;left:43%;">Eraser</div>
                 <div style="top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;float:right" id="white" onclick="color(this)"></div>
                 <div id="clearCont">
-                    <button id="clearbutton">Clear</button>
+                    <!-- <button id="clearbutton">Clear</button> -->
                     <button id="submit">Pixa 8 Bit</button>
                 </div>
             </td>
@@ -43,7 +43,9 @@
               <td id="empty"></td>
               <td id="result"></td>
             </tr>
-            <tr id="link"></tr>
+            <tr>
+                <a id="link" href=""></a>
+            </tr>
             </table>
            
             <script type="text/javascript">
