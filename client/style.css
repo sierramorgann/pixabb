@@ -33,6 +33,16 @@ body {
 	margin-top:	15%; 
 }
 
+#empty {
+	float: right;
+	padding-right: 7%;
+	margin-top:	15%; 
+}
+
+#result {
+	padding-top: 5%;
+}
+
 video {
 	margin-top: 5%;
 }

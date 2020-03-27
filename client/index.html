@@ -22,7 +22,8 @@
                 <div style="top:20%;left:43%;">Eraser</div>
                 <div style="top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;float:right" id="white" onclick="color(this)"></div>
                 <div id="clearCont">
-                    <button id="clearbutton" onclick="clearCanvas(canvas,ctx);">Clear</button>
+                    <button id="clearbutton">Clear</button>
+                    <button id="submit">Pixa 8 Bit</button>
                 </div>
             </td>
             <td><canvas width="600px" height="450px" id="can"></canvas></td>
@@ -38,12 +39,22 @@
                     <video id="video">Video stream not available.</video>
                 </td>
             </tr>
+            <tr>
+              <td id="empty"></td>
+              <td id="result"></td>
+            </tr>
+            <tr id="link"></tr>
             </table>
+           
             <script type="text/javascript">
             $(document).ready(function() {
                 var button = $('#submit');
-                $("#submit").click(function() {
-                    toImg();
+                button.click(function() {
+                    convertCanvasToImage(canvas);
+                });
+                var clear = $('#clearbutton');
+                clear.click(function(){
+                    clearCanvas(canvas,ctx);
                 });
             });
             </script>
