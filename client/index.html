@@ -11,8 +11,19 @@
 <body onload="init()">
     <table>
         <tr>
+            <td></td>
+            <td><a id="link" href=""></a></td>
+        </tr>
+        <tr>
+            <td><h1>Pixa 8 Bit</h1></td>
+            <td>
+                <input type="file" id="imageLoader" name="imageLoader" /><br><br>
+                 <button id="vidStart">Take Photo</button>
+            </td> 
+        </tr>
+    
+        <tr>
             <td id="left">
-                <h1>Pixa 8 Bit</h1>
                 <div class="colors" style="top:15%;left:45%;background:green;" id="green" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:46%;background:blue;" id="blue" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:47%;background:red;" id="red" onclick="color(this)"></div>
@@ -22,49 +33,64 @@
                 <div style="top:20%;left:43%;">Eraser</div>
                 <div style="top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;float:right" id="white" onclick="color(this)"></div>
                 <div id="clearCont">
-                    <!-- <button id="clearbutton">Clear</button> -->
+                <br>
+                    <button id="clearbutton">Clear</button><br><br>
                     <button id="submit">Pixa 8 Bit</button>
                 </div>
             </td>
-            <td><canvas width="600px" height="450px" id="can"></canvas></td>
-            <!-- <br><input id="name" type="" name="" value="Your Name" onfocus="this.value=''"><br>
-    <button id="submit">Submit</button>
-    <div id="download"></div>
- -->        <tr>
-                <td id="drop"></td>
+            <td>
+                <canvas id="can"></canvas>
+            </td>
+
+
+            <!-- Save name and image to a db for display in gallery 
+            <br><input id="name" type="" name="" value="Your Name" onfocus="this.value=''"><br>
+            <button id="submit">Submit</button>
+             <div id="download"></div>
+            -->
+        </tr>
+        <!--    <tr>
+            <td id="drop"></td>
                 <td>
                     Drop an image onto the canvas above or take a photo!
                 </td>
-            </tr>
-            <tr>
-                <td id="take">
-                    <button id="startbutton">Take photo</button>
-                </td>
-                <td>
-                    <video id="video">Video stream not available.</video>
-                </td>
-            </tr>
-            <tr>
-              <td id="empty"></td>
-              <td id="result"></td>
-            </tr>
-            <tr>
-                <a id="link" href=""></a>
-            </tr>
-            </table>
-           
-            <script type="text/javascript">
-            $(document).ready(function() {
-                var button = $('#submit');
-                button.click(function() {
-                    convertCanvasToImage(canvas);
-                });
-                var clear = $('#clearbutton');
-                clear.click(function(){
-                    clearCanvas(canvas,ctx);
-                });
-            });
-            </script>
+        </tr> -->
+        <tr>
+            <td></td>
+            <td>
+                <video id="video">Video stream not available.</video>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="startbutton">Capture</button></td>
+        </tr>
+        <tr>
+            <td id="empty"></td>
+            <td id="result"></td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+    var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false)
+
+    $(document).ready(function() {
+        var button = $('#submit');
+        button.click(function() {
+            convertCanvasToImage(canvas);
+        });
+
+        var vid = $('#vidStart');
+        vid.click(function() {
+            imgcap();
+        });
+
+        var clear = $('#clearbutton');
+        clear.click(function() {
+            clearCanvas(canvas, ctx);
+        });
+    });
+    </script>
 </body>
 
 </html>

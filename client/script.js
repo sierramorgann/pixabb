@@ -8,6 +8,24 @@ var canvas, ctx, flag = false,
 var x = "black",
     y = 2;
 
+function handleImage(e){
+  canvas = document.getElementById('can');
+  ctx = canvas.getContext("2d");
+  document.getElementById("imageLoader").style.display = "none";
+  var reader = new FileReader();
+
+  reader.onload = function(event){
+    var img = new Image();
+      img.onload = function(){
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img,0,0);
+      }
+      img.src = event.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);     
+}
+
 function init() {
   
     canvas = document.getElementById('can');
@@ -15,22 +33,23 @@ function init() {
     w = canvas.width;
     h = canvas.height;
 
-    window.ondragover = function(e) {e.preventDefault()}
-    window.ondrop = function(e) {e.preventDefault(); draw(e.dataTransfer.files[0]); }
-        
-    function draw(file){
-        
-        var img =new Image();
-        // URL @ Mozilla, webkitURL @ Chrome
-        img.src = (window.webkitURL ? webkitURL : URL).createObjectURL(file);
+    // drag image on to canvas and draw
 
-        // call ctx.drawImage when the image got loaded
-        img.onload = function() {
-          // ctx.drawImage(img, 0, 0);
-          ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height); // stretch img to canvas size
-      }
+    //window.ondragover = function(e) {e.preventDefault()}
+    //window.ondrop = function(e) {e.preventDefault(); draw(e.dataTransfer.files[0]); }
+        
+    // function draw(file){
+        
+    //     var img =new Image();
+    //     // URL @ Mozilla, webkitURL @ Chrome
+    //     img.src = (window.webkitURL ? webkitURL : URL).createObjectURL(file);
 
-    }
+    //     // call ctx.drawImage when the image got loaded
+    //     img.onload = function() {
+    //       // ctx.drawImage(img, 0, 0);
+    //       ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height); // stretch img to canvas size
+    //   }
+    //}
 
     canvas.addEventListener("mousemove", function(e) {
         findxy('move', e)
@@ -57,7 +76,7 @@ function download() {
    document.getElementById("link").innerHTML = "";
 
    var link = document.getElementById('link');
-        link.innerHTML = 'download image';
+        link.innerHTML = '<button>Download Image</button>';
         link.href = "#";
         link.download = "littleBits.png";
         link.className = "link";
@@ -217,7 +236,7 @@ function convertCanvasToImage(canvas) {
     function imageLoaded() {
 
         document.getElementById("video").style.display = "none";
-        document.getElementById("take").style.display = "none";
+        document.getElementById("startbutton").style.display = "none";
 
         var width = canvas.width;
         var height = canvas.height;
@@ -261,11 +280,12 @@ function convertCanvasToImage(canvas) {
     }
 
     function imgcap() {
+
         // The width and height of the captured photo. We will set the
         // width to the value defined here, but the height will be
         // calculated based on the aspect ratio of the input stream.
 
-        var canvas = document.getElementById("can");
+        canvas = document.getElementById("can");
 
         var width = 600; // We will scale the photo width to this
         var height = 0; // This will be computed based on the input stream
@@ -299,9 +319,11 @@ function convertCanvasToImage(canvas) {
 
         function startup() {
             video = document.getElementById('video');
+            video.style.display = "inline-block";
             canvas = document.getElementById('can');
             photo = document.getElementById('photo');
             startbutton = document.getElementById('startbutton');
+            startbutton.style.display = "inline-block";
 
             navigator.mediaDevices.getUserMedia({ video: true, audio: false })
                 .then(function(stream) {
@@ -348,6 +370,8 @@ function convertCanvasToImage(canvas) {
         function takepicture() {
             var canvas = document.getElementById('can');
             var context = canvas.getContext('2d');
+            document.getElementById("video").style.display = "none";
+            document.getElementById("startbutton").style.display = "none";
 
             if (width && height) {
                 canvas.width = width;
@@ -362,7 +386,5 @@ function convertCanvasToImage(canvas) {
 
         // Set up our event listener to run the startup process
         // once loading is complete.
-        window.addEventListener('load', startup, false);
+        startup();
     }
-
-    imgcap();
