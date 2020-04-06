@@ -70,6 +70,7 @@ function init() {
 // Clear the canvas context using the canvas width and height
 function clearCanvas(canvas, ctx) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById("placeHolder").innerHTML = "";
 }
 
 function download(canvas) {
