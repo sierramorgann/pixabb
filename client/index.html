@@ -4,16 +4,12 @@
     <title>Pixa 8 Bit </title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- <script src="{{ url_for('static', filename='script/script.js') }}"></script> -->
+    <script type="text/javascript" src="qrcode.js"></script>
     <script src="script.js"></script>
 </head>
 
 <body onload="init()">
     <table>
-        <tr>
-            <td></td>
-            <td><a id="link" href=""></a></td>
-        </tr>
         <tr>
             <td><h1>Pixa 8 Bit</h1></td>
             <td>
@@ -40,15 +36,18 @@
             </td>
             <td>
                 <canvas id="can"></canvas>
-            </td>
+            </td>  
+        </tr>
 
-
-            <!-- Save name and image to a db for display in gallery 
+        <tr>
+            <td><a id="link" href=""></a></td>
+            <td id="placeHolder"></td>
+        </tr>
+        <!-- Save name and image to a db for display in gallery 
             <br><input id="name" type="" name="" value="Your Name" onfocus="this.value=''"><br>
             <button id="submit">Submit</button>
              <div id="download"></div>
             -->
-        </tr>
         <!--    <tr>
             <td id="drop"></td>
                 <td>
@@ -64,10 +63,6 @@
         <tr>
             <td></td>
             <td><button id="startbutton">Capture</button></td>
-        </tr>
-        <tr>
-            <td id="empty"></td>
-            <td id="result"></td>
         </tr>
     </table>
     <script type="text/javascript">
