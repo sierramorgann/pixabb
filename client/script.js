@@ -85,23 +85,89 @@ function download(canvas) {
 
 function color(obj) {
     switch (obj.id) {
-        case "green":
-            x = "green";
+        case "yellow":
+            x = "#f7ff56";
+            break;
+        case "neon":
+            x = "#94fc13";
+            break;
+        case "aqua":
+            x = "#4be3ac";
+            break;
+        case "navy":
+            x = "#032d3c";
+            break;
+        case "brown":
+            x = "#5a3921";
+            break;
+        case "moss":
+            x = "#6b8c42";
+            break;
+        case "tree":
+            x = "#616f39";
+            break;
+        case "pond":
+            x = "#a7d129";
+            break;
+        case "night":
+            x = "#413c69";
             break;
         case "blue":
-            x = "blue";
+            x = "#4a47a3";
             break;
-        case "red":
-            x = "red";
+        case "lav":
+            x = "#ad62aa";
             break;
-        case "yellow":
-            x = "yellow";
+        case "mauve":
+            x = "#eab9c9";
+            break;
+        case "pink":
+            x = "#ffbcbc";
+            break;
+        case "ocean":
+            x = "#4cd3c2";
+            break;
+        case "barbie":
+            x = "#efa8e4";
+            break;
+        case "bb":
+            x = "#f8e1f4";
+            break;
+        case "sky":
+            x = "#00bcd4";
+            break;
+        case "mint":
+            x = "#b2ebf2";
             break;
         case "orange":
-            x = "orange";
+            x = "#ff5722";
+            break;
+        case "red":
+            x = "#dd2c00";
+            break;
+        case "turquoise":
+            x = "#18b0b0";
+            break;
+        case "fall":
+            x = "#de7119";
+            break;
+        case "grey":
+            x = "#dee3e2";
+            break;
+        case "teal":
+            x = "#116979";
             break;
         case "black":
             x = "black";
+            break;
+        case "dark":
+            x = "#323232";
+            break;
+        case "hot":
+            x = "#ff1e56";
+            break;
+        case "clem":
+            x = "#ffac41";
             break;
         case "white":
             x = "white";
