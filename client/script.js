@@ -1,13 +1,3 @@
-var canvas, ctx, flag = false,
-    prevX = 0,
-    currX = 0,
-    prevY = 0,
-    currY = 0,
-    dot_flag = false;
-
-var x = "black",
-    y = 2;
-
 function handleImage(e) {
     canvas = document.getElementById('can');
     ctx = canvas.getContext("2d");
@@ -26,257 +16,33 @@ function handleImage(e) {
     reader.readAsDataURL(e.target.files[0]);
 }
 
+
 function init() {
 
     canvas = document.getElementById('can');
     ctx = canvas.getContext("2d");
     w = canvas.width;
     h = canvas.height;
-
-    // drag image on to canvas and draw
-
-    //window.ondragover = function(e) {e.preventDefault()}
-    //window.ondrop = function(e) {e.preventDefault(); draw(e.dataTransfer.files[0]); }
-
-    // function draw(file){
-
-    //     var img =new Image();
-    //     // URL @ Mozilla, webkitURL @ Chrome
-    //     img.src = (window.webkitURL ? webkitURL : URL).createObjectURL(file);
-
-    //     // call ctx.drawImage when the image got loaded
-    //     img.onload = function() {
-    //       // ctx.drawImage(img, 0, 0);
-    //       ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height); // stretch img to canvas size
-    //   }
-    //}
-
-    canvas.addEventListener("mousemove", function(e) {
-        findxy('move', e)
-    }, false);
-    canvas.addEventListener("mousedown", function(e) {
-        findxy('down', e)
-    }, false);
-    canvas.addEventListener("mouseup", function(e) {
-        findxy('up', e)
-    }, false);
-    canvas.addEventListener("mouseout", function(e) {
-        findxy('out', e)
-    }, false);
-
-    initTouch();
 }
 
 // Clear the canvas context using the canvas width and height
 function clearCanvas(canvas, ctx) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    document.getElementById("placeHolder").innerHTML = "";
+    location.reload();
 }
 
 function download(canvas) {
-    //document.getElementById("link").innerHTML = "";
-    var url = canvas.toDataURL("image/png");
-    var link = document.getElementById('link');
-    link.innerHTML = '<button>Download Image</button>';
-    link.href = url;
-    link.download = "littleBits.png";
-    link.className = "link";
-}
+    var blank = isCanvasBlank(canvas);
 
-function color(obj) {
-    switch (obj.id) {
-        case "yellow":
-            x = "#f7ff56";
-            break;
-        case "neon":
-            x = "#94fc13";
-            break;
-        case "aqua":
-            x = "#4be3ac";
-            break;
-        case "navy":
-            x = "#032d3c";
-            break;
-        case "brown":
-            x = "#5a3921";
-            break;
-        case "moss":
-            x = "#6b8c42";
-            break;
-        case "tree":
-            x = "#616f39";
-            break;
-        case "pond":
-            x = "#a7d129";
-            break;
-        case "night":
-            x = "#413c69";
-            break;
-        case "blue":
-            x = "#4a47a3";
-            break;
-        case "lav":
-            x = "#ad62aa";
-            break;
-        case "mauve":
-            x = "#eab9c9";
-            break;
-        case "pink":
-            x = "#ffbcbc";
-            break;
-        case "ocean":
-            x = "#4cd3c2";
-            break;
-        case "barbie":
-            x = "#efa8e4";
-            break;
-        case "bb":
-            x = "#f8e1f4";
-            break;
-        case "sky":
-            x = "#00bcd4";
-            break;
-        case "mint":
-            x = "#b2ebf2";
-            break;
-        case "orange":
-            x = "#ff5722";
-            break;
-        case "red":
-            x = "#dd2c00";
-            break;
-        case "turquoise":
-            x = "#18b0b0";
-            break;
-        case "fall":
-            x = "#de7119";
-            break;
-        case "grey":
-            x = "#dee3e2";
-            break;
-        case "teal":
-            x = "#116979";
-            break;
-        case "black":
-            x = "black";
-            break;
-        case "dark":
-            x = "#323232";
-            break;
-        case "hot":
-            x = "#ff1e56";
-            break;
-        case "clem":
-            x = "#ffac41";
-            break;
-        case "white":
-            x = "white";
-            break;
-    }
-    if (x == "white") y = 14;
-    else y = 2;
-}
-
-function draw() {
-    ctx.beginPath();
-    ctx.moveTo(prevX, prevY);
-    ctx.lineTo(currX, currY);
-    ctx.strokeStyle = x;
-    ctx.lineWidth = y;
-    ctx.stroke();
-    ctx.closePath();
-}
-
-function findxy(res, e) {
-    if (res == 'down') {
-        prevX = currX;
-        prevY = currY;
-        currX = e.clientX - canvas.offsetLeft;
-        currY = e.clientY - canvas.offsetTop;
-
-        flag = true;
-        dot_flag = true;
-        if (dot_flag) {
-            ctx.beginPath();
-            ctx.fillStyle = x;
-            ctx.fillRect(currX, currY, 2, 2);
-            ctx.closePath();
-            dot_flag = false;
-        }
-    }
-    if (res == 'up' || res == "out") {
-        flag = false;
-    }
-    if (res == 'move') {
-        if (flag) {
-            prevX = currX;
-            prevY = currY;
-            currX = e.clientX - canvas.offsetLeft;
-            currY = e.clientY - canvas.offsetTop;
-            draw();
-        }
-    }
-    if (res == '') {
-        draw();
-    }
-}
-
-// Get the touch position relative to the top-left of the canvas
-// When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
-// but not the position relative to our target div. We'll adjust them using "target.offsetLeft" and
-// "target.offsetTop" to get the correct values in relation to the top left of the canvas.
-function getTouchPos(e) {
-    if (!e)
-        var e = event;
-
-    if (e.touches) {
-        if (e.touches.length == 1) { // Only deal with one finger
-            var touch = e.touches[0]; // Get the information for finger #1
-            touchX = touch.pageX - touch.target.offsetLeft;
-            touchY = touch.pageY - touch.target.offsetTop;
-        }
-    }
-}
-
-// Draw something when a touch start is detected
-function sketchpad_touchStart() {
-    // Update the touch co-ordinates
-    getTouchPos();
-
-    console.log("touch start");
-
-    // Prevents an additional mousedown event being triggered
-    event.preventDefault();
-}
-
-// Draw something and prevent the default scrolling when touch movement is detected
-function sketchpad_touchMove(e) {
-    // Update the touch co-ordinates
-    var res = getTouchPos(e);
-
-    // During a touchmove event, unlike a mousemove event, we don't need to check if the touch is engaged, since there will always be contact with the screen by definition.
-    findxy(e);
-
-    console.log("touch pos");
-
-    // Prevent a scrolling action as a result of this touchmove triggering.
-    event.preventDefault();
-}
-
-// Set-up the canvas and add our event handlers after the page has loaded
-function initTouch() {
-    // Get the specific canvas element from the HTML document
-    canvas = document.getElementById('can');
-
-    // If the browser supports the canvas tag, get the 2d drawing context for this canvas
-    if (canvas.getContext)
-        ctx = canvas.getContext('2d');
-
-    // Check that we have a valid context to draw on/with before adding event handlers
-    if (ctx) {
-        // React to touch events on the canvas
-        canvas.addEventListener('touchstart', sketchpad_touchStart, false);
-        canvas.addEventListener('touchmove', sketchpad_touchMove, false);
+    if (blank != true) {
+        var url = canvas.toDataURL("image/png");
+        var link = document.getElementById('link');
+        link.innerHTML = '<button>Download Image</button>';
+        link.href = url;
+        link.download = "littleBits.acnl";
+        link.className = "link";
+    } else {
+        console.log("canvas is blank")
     }
 }
 
@@ -291,12 +57,18 @@ function isCanvasBlank(canvas) {
 }
 
 function qrCode(image) {
-    var typeNumber = 40;
-    var errorCorrectionLevel = 'H';
-    var qr = qrcode(typeNumber, errorCorrectionLevel);
-    qr.addData(image);
-    qr.make();
-    document.getElementById('placeHolder').innerHTML = qr.createImgTag();
+    var blank = isCanvasBlank(canvas);
+
+    if (blank != true) { 
+        var typeNumber = 40;
+        var errorCorrectionLevel = 'H';
+        var qr = qrcode(typeNumber, errorCorrectionLevel);
+        qr.addData(image);
+        qr.make();
+        document.getElementById('placeHolder').innerHTML = qr.createImgTag();
+    } else {
+        document.getElementById('placeHolder').innerHTML = "Canvas is blank."
+    }
 }
 
 function convertCanvasToImage(canvas) {
@@ -334,8 +106,8 @@ function convertCanvasToImage(canvas) {
         context.msImageSmoothingEnabled = false;
         context.imageSmoothingEnabled = false;
 
-        // We'll be pixelating the image by 80% (20% of original size).
-        var percent = 0.2;
+        // We'll be pixelating the image by 95% (5% of original size).
+        var percent = 0.05;
 
         // Calculate the scaled dimensions.
         var scaledWidth = width * percent;

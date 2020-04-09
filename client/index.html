@@ -8,77 +8,68 @@
     <script src="script.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init();">
     <table>
         <tr>
-            <td><h1>Pixa 8 Bit</h1></td>
+            <td>
+                <h1>Pixa 8 Bit</h1>
+            </td>
             <td>
                 <input type="file" id="imageLoader" name="imageLoader" /><br><br>
-                 <button id="vidStart">Take Photo</button>
-            </td> 
+                <button id="vidStart">Take Photo</button>
+            </td>
         </tr>
-    
         <tr>
-            <td id="left"> 
+            <td id="left">
                 <div class="colors" style="top:15%;left:46%;background:#f7ff56;" id="yellow" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:47%;background:#94fc13;" id="neon" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:45%;background:#4be3ac;" id="aqua" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:46%;background:#032d3c;" id="navy" onclick="color(this)"></div>
-
                 <br>
                 <div class="colors" style="top:15%;left:46%;background:#5a3921;" id="brown" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:47%;background:#6b8c42;" id="moss" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:45%;background:#616f39;" id="tree" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:46%;background:#a7d129;" id="pond" onclick="color(this)"></div>
-
                 <br>
-
                 <div class="colors" style="top:15%;left:46%;background:#413c69;" id="night" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:47%;background:#4a47a3;" id="blue" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:45%;background:#ad62aa;" id="lav" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:46%;background:#eab9c9;" id="mauve" onclick="color(this)"></div>
-
                 <br>
-
                 <div class="colors" style="top:15%;left:45%;background:#ffbcbc;" id="pink" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:46%;background:#4cd3c2;" id="ocean" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:45%;background:#efa8e4;" id="barbie" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:46%;background:#f8e1f4;" id="bb" onclick="color(this)"></div>
-
                 <br>
-                
                 <div class="colors" style="top:15%;left:46%;background:#00bcd4;" id="sky" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:47%;background:#b2ebf2;" id="mint" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:45%;background:#ff5722;" id="orange" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:46%;background:#dd2c00;" id="red" onclick="color(this)"></div>
-
                 <br>
-
                 <div class="colors" style="top:15%;left:45%;background:#18b0b0;" id="turquoise" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:47%;background:#de7119;" id="fall" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:45%;background:#dee3e2;" id="grey" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:46%;background:#116979;" id="teal" onclick="color(this)"></div>
-                
                 <br>
-
                 <div class="colors" style="top:15%;left:45%;background:black;" id="black" onclick="color(this)"></div>
                 <div class="colors" style="top:15%;left:46%;background:#323232;" id="dark" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:45%;background:#ff1e56;" id="hot" onclick="color(this)"></div>
                 <div class="colors" style="top:17%;left:46%;background:#ffac41;" id="clem" onclick="color(this)"></div>
-              
                 <div style="top:20%;left:43%;">Eraser</div>
                 <div style="top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;float:right" id="white" onclick="color(this)"></div>
                 <div id="clearCont">
-                <br>
+                    <br>
                     <button id="clearbutton">Clear</button><br><br>
-                    <button id="submit">Pixa 8 Bit</button>
+                    <button id="submit">Pixa 8 Bit</button><br><br>
+                    <button id="regBrush">Regular Brush</button><br>
+                    <button id="pixBrush">Pixa Brush</button><br>
+                    <button id="circ">Circle Repeat Brush</button>
                 </div>
             </td>
             <td>
                 <canvas id="can" height="450" width="600"></canvas>
-            </td>  
+            </td>
         </tr>
-
         <tr>
             <td><a id="link" href=""></a></td>
             <td id="placeHolder"></td>
@@ -95,7 +86,7 @@
                 </td>
         </tr> -->
         <tr>
-            <td></td>
+            <td><canvas id="small"></canvas></td>
             <td>
                 <video id="video">Video stream not available.</video>
             </td>
@@ -105,27 +96,7 @@
             <td><button id="startbutton">Capture</button></td>
         </tr>
     </table>
-    <script type="text/javascript">
-    var imageLoader = document.getElementById('imageLoader');
-    imageLoader.addEventListener('change', handleImage, false)
-
-    $(document).ready(function() {
-        var button = $('#submit');
-        button.click(function() {
-            convertCanvasToImage(canvas);
-        });
-
-        var vid = $('#vidStart');
-        vid.click(function() {
-            imgcap();
-        });
-
-        var clear = $('#clearbutton');
-        clear.click(function() {
-            clearCanvas(canvas, ctx);
-        });
-    });
-    </script>
+    <script type="text/javascript" src="brushes.js"></script>
 </body>
 
 </html>
